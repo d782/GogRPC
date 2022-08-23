@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	pb "github.com/d782/GogRPC/project/proto"
+	pb "github.com/d782/GogRPC/calculator/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -17,8 +17,7 @@ func main() {
 		log.Fatalf("Failed to connect: %v \n", err)
 	}
 
-	c := pb.NewGreetServiceClient(conn)
-	//doGreet(c)
-	doGreeManyTimes(c)
+	c := pb.NewCalculatorServiceClient(conn)
+	doSum(c)
 	defer conn.Close()
 }
